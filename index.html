@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Auntie's Recipes</title>
+<style>
+* {
+	font-family: sans-serif;
+	color: #333;
+}
+#page {
+	display: table;
+	width: 100%;
+}
+#inner {
+	display:table-cell;
+	vertical-align:middle;
+	text-align: center;
+}
+#message {
+	width: 800px;
+	margin: auto;
+	margin-top: 150px;
+	text-align: center;
+}
+section {
+	margin-top: 50px;
+}
+small {
+	font-family: monospace;
+}
+LI {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+#search {
+    width: 300px;
+}
+#results {
+    text-align: left;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script>
+var prom = $.Deferred();
+$.getJSON('./code/titles.json').fail(prom.reject).done(function (titles) {
+    prom.resolve(titles);
+});
+
+$(function () {
+
+    $('form').submit(function (e) {
+        e.preventDefault();
+        var search = $('#search').val().toLowerCase().trim().split(' ');
+        var scores = {};
+        prom.done(function (titles) {
+            // Collect matching titles, add to score if matches more than once, to provide some kind of relevance sort
+            var veggie = document.getElementById('veg').checked;
+            Object.keys(titles).forEach(function (title) {
+                if (veggie && !titles[title].v) {
+                    return;
+                }
+
+                var titleLower = title.toLowerCase().trim();
+                var score = 0;
+                search.forEach(function (searchWord) {
+                    if (new RegExp('\\b' + searchWord + '\\b').test(titleLower)) {
+                        score += 1;
+                    }
+                });
+                if (score) {
+                    scores[title] = scores[title] + score || score;
+                }
+            });
+
+            // Sort by relevance
+            var matches = Object.keys(scores);
+            matches = matches.sort(function (a, b) {
+                if (scores[a] === scores[b]) {
+                    return 0;
+                }
+                return (scores[a] > scores[b]) ? -1 : 1;
+            });
+
+            matches = matches.slice(0, 10);
+
+            $('#results').empty().append('<ol>');
+            matches.forEach(function (match) {
+                $('<li><a rel="external" target="_blank" href="http://www.bbc.co.uk/food/recipes/' + titles[match].u + '">' + match + '</a><br />' + titles[match].i + ' ingredients, ' +titles[match].pt+ 'mins to make, ' +titles[match].ct+ ' to cook.</li>').appendTo('#results');
+            });
+            $('#results').append('</ol>');
+        });
+    });
+});
+</script>
+</head>
+<body>
+<div id="page">
+  <div id="inner">
+  	<div id="message">
+		<h1>Auntie's Recipes is a searchable index of all the <a href="https://twitter.com/search?q=%23bbcrecipes&src=typd&lang=en-gb">#BBCRecipes</a>.</h1>
+        <section>
+            <form action="#">
+                Search the recipes: <input type="search" id="search" name="keywords" value="apple pie from scratch" placeholder="Type some keywords here"><input type="submit" id='go' value="Search"> <label for="veg">Only veggie?</label><input type="checkbox" id="veg"> (beta).
+            </form>
+        </section>
+        <section id="results">
+        </section>
+        <section>
+            <p>
+            What you should do now: <a href="https://www.change.org/p/bbc-save-the-bbc-s-recipe-archive" rel="external">Sign the petition to save the recipes and make this website redundant</a>.
+            </p>
+            <p>
+            What you should do next: <a href="https://twitter.com/intent/tweet?text=Fear+not,+the+%23BBCRecipes+will+live+on+at+http%3A%2F%2Fwww.auntiesrecipes.co.uk+(current+status%3A+downloading+all+the+recipes!)">Tweet about this project</a>, it would be great to have some design and technical help.
+            </p>
+        </section>
+		<section>
+            <p>
+            Aunties Recipes is being built by <a href="https://twitter.com/user24">@user24</a> as a fun side project. The plan is not to host the recipes themselves but simply to serve as a free searchable directory of links to the original recipes.
+            </p>
+        </section>
+        <section>
+            <p>
+            Project status: converting recipes to JSON.<br />
+            &#10003; Write code to parse HTML into JSON<br />
+            &#10003; Download 11,000 recipes
+            </p>
+            <p>
+            Downloading your own archive? Here's a helping hand:<br />
+            <small>wget --quiet http://www.bbc.co.uk/food/sitemap.xml --output-document - | egrep -o "https?://www.bbc.co.uk/food/recipes/[^&lt;]+" | wget -i -</small>
+            </p>
+		</section>
+	</div>
+  </div>
+</div>
+</body>
+</html>
