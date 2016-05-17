@@ -14,19 +14,20 @@
 #inner {
 	display:table-cell;
 	vertical-align:middle;
-	text-align: center;
 }
 #message {
 	width: 800px;
 	margin: auto;
 	margin-top: 50px;
-	text-align: center;
+}
+section:first-child {
+    text-align: center;
 }
 section {
 	margin-top: 50px;
 }
-small {
-	font-family: monospace;
+footer {
+    margin-top: 300px;
 }
 LI {
     list-style-type: none;
@@ -147,11 +148,13 @@ $(function () {
 <div id="page">
   <div id="inner">
   	<div id="message">
-		<h1>Auntie's Recipes is a searchable index of all the <a href="https://twitter.com/search?q=%23bbcrecipes&src=typd&lang=en-gb">#BBCRecipes</a>.</h1>
-        <section>
+		<section>
+            <h1>Auntie's Recipes is a searchable index of all the <a href="https://twitter.com/search?q=%23bbcrecipes&src=typd&lang=en-gb">#BBCRecipes</a>.</h1>
+            <section>
             <form action="#">
                 Search the recipes: <input type="search" id="search" name="keywords" value="" placeholder="Type some keywords here"> <input type="submit" id='go' value="Search"> <label for="veg">Only <span class="v">&#9445;</span> veggie?</label><input type="checkbox" id="veg"> (beta).
             </form>
+            </section>
         </section>
         <section id="results">
         </section>
@@ -177,6 +180,12 @@ $(function () {
             </p>
             -->
 		</section>
+        <footer>
+            <small>
+                <strong>Privacy notice:</strong> This website does not track anything you search or click on.<br />
+                The searching is actually performed super fast on the client-side, so your search queries never even hit my server.
+            </small>
+        </footer>
 	</div>
   </div>
 </div>
