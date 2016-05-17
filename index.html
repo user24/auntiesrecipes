@@ -41,6 +41,9 @@ LI {
 LI A {
     color: #3232ff;
 }
+.v {
+    color: #32AA32;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 <script>
@@ -95,7 +98,16 @@ $(function () {
 
             $('#results').empty().append('<ol>');
             matches.forEach(function (match) {
-                $('<li><a rel="external" target="_blank" href="http://www.bbc.co.uk/food/recipes/' + data[match].u + '">' + match + '</a><br />' + data[match].i + ' ingredients, ' +data[match].pt+ 'mins to make, ' +data[match].ct+ ' to cook. ' +data[match].r+ ' recommended</li>').appendTo('#results');
+                var el = $('<li></li>');
+                el.append('<a rel="external" target="_blank" href="http://www.bbc.co.uk/food/recipes/' + data[match].u + '">' + match + '</a>');
+                if (data[match].v) {
+                    el.append(' <span class="v">&#9445;</span>');
+                }
+                el.append('<br />' + data[match].i + ' ingredients');
+                el.append(', ' +data[match].pt + ' mins to make');
+                el.append(', ' +data[match].ct+ ' to cook. ');
+                
+                $(el).appendTo('#results');
             });
             $('#results').append('</ol>');
         });
