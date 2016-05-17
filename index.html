@@ -119,16 +119,16 @@ $(function () {
                 if (data[match].i) {
                     el.append(data[match].i + ' ingredients. ');
                 }
-                if (data[match].pt) {
-                    el.append(data[match].pt + ' mins to make');
+                if (data[match].p) {
+                    el.append(data[match].p + ' mins to make');
                 }
-                if (data[match].ct) {
-                    mins = ' mins';
-                    if (data[match].pt) {
+                if (data[match].c) {
+                    var mins = ' mins';
+                    if (data[match].p) {
                         el.append(', ');
                         mins = '';
                     }
-                    el.append(data[match].ct + mins + ' to cook');
+                    el.append(data[match].c + mins + ' to cook');
                 }
                 el.append('.');
                 
