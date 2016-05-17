@@ -19,7 +19,7 @@
 #message {
 	width: 800px;
 	margin: auto;
-	margin-top: 150px;
+	margin-top: 50px;
 	text-align: center;
 }
 section {
@@ -30,19 +30,27 @@ small {
 }
 LI {
     list-style-type: none;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    padding-left: 100px;
+    background-repeat: no-repeat;
+    text-align: left;
 }
 #search {
     width: 300px;
 }
 #results {
-    text-align: left;
+    width: 600px;
+    margin: auto;
+    margin-top: 50px;
 }
 LI A {
     color: #3232ff;
 }
 .v {
     color: #32AA32;
+}
+.recommend {
+    color: #CCCC32;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
@@ -103,9 +111,29 @@ $(function () {
                 if (data[match].v) {
                     el.append(' <span class="v">&#9445;</span>');
                 }
-                el.append('<br />' + data[match].i + ' ingredients');
-                el.append(', ' +data[match].pt + ' mins to make');
-                el.append(', ' +data[match].ct+ ' to cook. ');
+                if (data[match].r) {
+                    el.append(' <span class="recommend">&#11089;' + data[match].r + '</span>');
+                }
+                el.append('<br />');
+                if (data[match].i) {
+                    el.append(data[match].i + ' ingredients. ');
+                }
+                if (data[match].pt) {
+                    el.append(data[match].pt + ' mins to make');
+                }
+                if (data[match].ct) {
+                    mins = ' mins';
+                    if (data[match].pt) {
+                        el.append(', ');
+                        mins = '';
+                    }
+                    el.append(data[match].ct + mins + ' to cook');
+                }
+                el.append('.');
+                
+                el.css({
+                    'background-image': 'url(http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/' + data[match].u + '_16x9.jpg)'
+                });
                 
                 $(el).appendTo('#results');
             });
@@ -122,7 +150,7 @@ $(function () {
 		<h1>Auntie's Recipes is a searchable index of all the <a href="https://twitter.com/search?q=%23bbcrecipes&src=typd&lang=en-gb">#BBCRecipes</a>.</h1>
         <section>
             <form action="#">
-                Search the recipes: <input type="search" id="search" name="keywords" value="" placeholder="Type some keywords here"><input type="submit" id='go' value="Search"> <label for="veg">Only veggie?</label><input type="checkbox" id="veg"> (beta).
+                Search the recipes: <input type="search" id="search" name="keywords" value="" placeholder="Type some keywords here"> <input type="submit" id='go' value="Search"> <label for="veg">Only <span class="v">&#9445;</span> veggie?</label><input type="checkbox" id="veg"> (beta).
             </form>
         </section>
         <section id="results">
@@ -137,10 +165,8 @@ $(function () {
         </section>
 		<section>
             <p>
-            Aunties Recipes is being built by <a href="https://twitter.com/user24">@user24</a> as a fun side project. The plan is not to host the recipes themselves but simply to serve as a free searchable directory of links to the original recipes.
+            Aunties Recipes is being built by <a href="https://twitter.com/user24">@user24</a> as a fun side project.
             </p>
-        </section>
-        <section>
             <p>
             Project URL: <a href="https://github.com/user24/auntiesrecipes">https://github.com/user24/auntiesrecipes</a>
             </p>
