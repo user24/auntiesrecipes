@@ -11,6 +11,15 @@
 	display: table;
 	width: 100%;
 }
+.logoletter {
+	background: black;
+	color: white;
+	font-family: "Gill Sans";
+	margin: 1px;
+    padding: 5px;
+    float: left;
+    width: 30px;
+}
 #inner {
 	display:table-cell;
 	vertical-align:middle;
@@ -119,7 +128,14 @@ $(function () {
 <div id="page">
   <div id="inner">
   	<div id="message">
-		<h1>Auntie's Recipes is a searchable index of all the <a href="https://twitter.com/search?q=%23bbcrecipes&src=typd&lang=en-gb">#BBCRecipes</a>.</h1>
+        <h1>
+            <span class="logoletter">A</span>
+            <span class="logoletter">U</span>
+            <span class="logoletter">N</span>
+            <span class="logoletter">T</span>
+            <span class="logoletter">I</span>
+            <span class="logoletter">E</span>
+            <span class="logoletter">'S</span> Recipes is a searchable index of all the <a href="https://twitter.com/search?q=%23bbcrecipes&src=typd&lang=en-gb">#BBCRecipes</a>.</h1>
         <section>
             <form action="#">
                 Search the recipes: <input type="search" id="search" name="keywords" value="" placeholder="Type some keywords here"><input type="submit" id='go' value="Search"> <label for="veg">Only veggie?</label><input type="checkbox" id="veg"> (beta).
