@@ -36,6 +36,12 @@ LI {
     background-repeat: no-repeat;
     text-align: left;
 }
+.resimg {
+    float: left;
+    margin-right: 0.5em;
+    width: 88px;
+    height: 50px;
+}
 #search {
     width: 300px;
 }
@@ -108,7 +114,8 @@ $(function () {
             $('#results').empty().append('<ol>');
             matches.forEach(function (match) {
                 var el = $('<li></li>');
-                el.append('<a rel="external" target="_blank" href="http://www.bbc.co.uk/food/recipes/' + data[match].u + '">' + match + '</a>');
+                var imgurl = 'http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/' + data[match].u + '_16x9.jpg';
+                el.append('<a rel="external" target="_blank" href="http://www.bbc.co.uk/food/recipes/' + data[match].u + '"><span class="resimg" style="background-image: url(' + imgurl + ');"></span><span>' + match + '</span></a>');
                 if (data[match].v) {
                     el.append(' <span class="v">&#9445;</span>');
                 }
@@ -131,10 +138,6 @@ $(function () {
                     el.append(data[match].c + mins + ' to cook');
                 }
                 el.append('.');
-                
-                el.css({
-                    'background-image': 'url(http://ichef.bbci.co.uk/food/ic/food_16x9_88/recipes/' + data[match].u + '_16x9.jpg)'
-                });
                 
                 $(el).appendTo('#results');
             });
