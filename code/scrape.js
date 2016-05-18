@@ -85,8 +85,7 @@ function readFiles(dirname, onFileContent, onError, onComplete) {
 }
 
 // Converts PT30M to '30' and PT2H to '120'
-// also I think BBC have a bug in that cooking time is also reported as "PT" in their markup
-// doesn't matter as I just strip out those chars.
+// Cooking Times are returned in ISO 8601 format (PT2H)
 function parseTime(time) {
 	if (!time) {
 		return null;
