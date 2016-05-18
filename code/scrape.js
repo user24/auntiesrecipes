@@ -56,8 +56,8 @@ function readFiles(dirname, onFileContent, onError, onComplete) {
         });
     }
     
-    // For dev; only process first 3000 recipes
-    //filenames = filenames.slice(0, 3000);
+    // For dev; only process first few recipes
+    //filenames = filenames.slice(0, 300);
     
     // Run in batches to keep open file descriptors down
     // via http://stackoverflow.com/a/21871527
@@ -141,7 +141,10 @@ readFiles(recipeDir, function (name, html) {
 	recipe.time.totalMins = recipe.time.preparationMins + recipe.time.cookingMins;
 
 	recipe.serves = $('.recipe-metadata__serving').text();
-	recipe.image = $('.recipe-media__image').attr('src');
+	recipe.image = $('meta[property="og:image"]').attr('content');
+    if (recipe.image.indexOf("bbc_placeholder.png") > -1) {
+        delete recipe.image;
+    }
 	recipe.isVegetarian = $('.recipe-metadata__dietary-vegetarian').length ? true : false;
     
     recipe.recommendations = parseInt($('.recipe-metadata__recommendations').text()) || 0;
