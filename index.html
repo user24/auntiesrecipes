@@ -157,10 +157,14 @@
             });
 
             matches = matches.slice(0, 20);
-
-            $('#results').empty().append('<ol>');
+            if(matches.length === 0){
+                $('#results').empty().append('<p>No results found</p>');
+            } else {
+                $('#results').empty().append('<ol>');
                 matches.forEach(appendRecipe);
-                $('#results').append('</ol>');
+                $('#results').append('</ol>');    
+            }
+            
             });
         });
     });
