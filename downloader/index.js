@@ -45,11 +45,17 @@ getSiteMap()
 
       var req = {url:task.url, headers: {"User-Agent":"auntiesreciples downloader" }};
       request.get(req, (err,res,body) => {
+        fs.exists("html/" + task.outfile, function(exists) {
+          if(exists) {
+             process.stdout.write("/")
+             return setImmediate(done);
+          }
           fs.writeFile("html/" + task.outfile, body, "utf8", () => {
               process.stdout.write("-")
             // console.log("Written: " + task.outfile);
             setImmediate(done);              
           });
+        });
       });
   }, concurrent_http_requests);
   q.drain = () => {
