@@ -187,7 +187,7 @@
             if(matches.length === 0){
                 var urls = Object.keys(recipes);
                 var rand = recipes[urls[Math.floor(Math.random() * urls.length)]];
-                $('#results').empty().append("<p>Couldn't find any recipes for that search, how about a nice <a href='http://www.bbc.co.uk/food/recipes/" + rand.u + "' rel='external' target='_blank'>" + rand.t + "</a> instead?</p>");
+                $('#results').empty().append("<p>Couldn't find any recipes for that search, sorry.</p><p>How about some nice <a href='http://www.bbc.co.uk/food/recipes/" + rand.u + "' rel='external' target='_blank'>" + rand.t.toLowerCase() + "</a> instead?</p>");
             } else {
                 addRecipes(matches);
             }
