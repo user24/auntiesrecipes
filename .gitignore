@@ -1,3 +1,5 @@
 ./receipe_download/*
 scraper/node_modules/*
+downloader/node_modules/*
+downloader/html/*
 

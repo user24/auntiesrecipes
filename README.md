@@ -11,7 +11,30 @@ Features I would like help with:
 * Better isVegetarian detection in the scraper
 * Search option based on prep/cooking/total time
 
+## Download tool
+
+The download can be done through a shell script and `wget` or through a Node.js download app.
+
+* Sitemap.xml is pulled (this file is huge and contains each recipe)
+* Each HTML file is pulled at a rate of 3-10 at a time depending on config
+
+### Installation
+
+```
+$ npm install
+```
+
+### Running the tool
+
+Note: this will take a long time and creates over 1GB of stored text.
+
+```
+$ node index.js
+```
+
 ## Scraping tool
+
+First run the download tool to gather all the HTML files from the BBC website.
 
 ### Installation
 
