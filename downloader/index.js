@@ -43,20 +43,20 @@ getSiteMap()
   var q = async.queue((task, done) => {
       process.stdout.write(".")
 
-      var req = {url:task.url, headers: {"User-Agent":"auntiesreciples downloader" }};
-      request.get(req, (err,res,body) => {
-        fs.exists("html/" + task.outfile, function(exists) {
-          if(exists) {
-             process.stdout.write("/")
-             return setImmediate(done);
-          }
+      fs.exists("html/" + task.outfile, function(exists) {
+        if(exists) {
+           process.stdout.write("/")
+           return done();
+        }
+        var req = {url:task.url, headers: {"User-Agent":"auntiesreciples downloader" }};
+        request.get(req, (err,res,body) => {
           fs.writeFile("html/" + task.outfile, body, "utf8", () => {
-              process.stdout.write("-")
-            // console.log("Written: " + task.outfile);
-            setImmediate(done);              
+             process.stdout.write("-")
+             // console.log("Written: " + task.outfile);
+             setImmediate(done);
           });
         });
-      });
+       });
   }, concurrent_http_requests);
   q.drain = () => {
       console.log("Everything has been downloaded.")
