@@ -192,11 +192,10 @@
         });
 
         $('#getRandy').click(function () {
-            var i = 20;
             var matches = [];
             prom.done(function (recipes) {
                 var urls = Object.keys(recipes);
-                while (i -= 1) {
+                while (matches.length < 20) {
                     matches.push(urls[Math.floor(Math.random() * urls.length)]);
                 }
                 matches = matches.sort(function (a, b) {
