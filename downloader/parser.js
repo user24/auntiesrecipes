@@ -14,7 +14,6 @@ module.exports = class Parser {
     var parser = new htmlparser.Parser({
         onopentag: function(name, attribs) {
             if(name == "loc"){
-                item = {};
                 inItem=true;
             }
             openTag = name;
@@ -27,7 +26,6 @@ module.exports = class Parser {
         onclosetag: function(name) {
             if (name=="loc") {
                 inItem=false;
-                items.push(item);
             }
             openTag=null;
         },
