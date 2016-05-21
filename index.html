@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Auntie's Recipes - BBC Recipe search engine</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="A search engine for BBC Food Recipes. Fast, free, and funky.">
-    <meta property="og:description" content="A search engine for BBC Food Recipes. Fast, free, and funky." />
+    <head>
+        <title>Auntie's Recipes - BBC Recipe search engine</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="A search engine for BBC Food Recipes. Fast, free, and funky.">
+        <meta property="og:description" content="A search engine for BBC Food Recipes. Fast, free, and funky." />
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-    <script src="search.js"></script>
-</head>
-<body>
-<div id="page">
-  <div id="inner">
-  	<div id="message">
-		<section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+        <script src="search.js"></script>
+    </head>
+    <body>
+        <section>
             <h1>Auntie's Recipes is a free search engine for <a href="https://twitter.com/search?q=%23bbcrecipes&src=typd&lang=en-gb">#BBCRecipes</a>.</h1>
             <section>
-            <form action="#">
-                Search the recipes: <input type="search" id="search" name="keywords" value="" placeholder="Type some keywords here"> <input type="submit" id='go' value="Search"> <label for="veg">Only <span class="v">&#9445;</span> veggie?</label><input type="checkbox" id="veg"><br />
-                <p>
-                <input type='button' id='getRandy' value='List some random recipes'>
-                </p>
-            </form>
+                <form action="#">
+                    <input type="search" id="search" name="keywords" value="" placeholder="Type some keywords here"> <input type="submit" id='go' value="Search recipes"> <label for="veg">Only <span class="v">&#9445;</span> veggie?</label><input type="checkbox" id="veg"><br />
+                    <p>
+                    <input type='button' id='getRandy' value='List some random recipes'>
+                    </p>
+                </form>
             </section>
         </section>
         <section id="results">
@@ -33,7 +30,7 @@
             Please <a href="https://twitter.com/intent/tweet?text=Fear+not,+the+%23BBCRecipes+live+on+at+https%3A%2F%2Fwww.AuntiesRecipes.co.uk,+you+can+search,+or+just+get+a+random+list+of+recipes!">tweet about this project</a>, and <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.auntiesrecipes.co.uk">share the link on facebook</a>, let's make Aunties Recipes the best recipe search engine out there!<br />
             </p>
         </section>
-		<section>
+        <section>
             <p>
             Aunties Recipes is a free search engine for all the BBC Food recipes. It's a recipe archive built by <a href="https://twitter.com/user24">@user24</a> as a fun side project when he's not programming <a class="growveg" href="http://www.growveg.co.uk">garden planning software</a> at work.
             </p>
@@ -41,7 +38,7 @@
             FAQ: What if the BBC moves or removes the recipes?<br />
             A: I have archived all the data so I could update links or rehost them if necessary :)
             </p>
-		</section>
+        </section>
         <footer>
             <p>
             Code: <a href="https://github.com/user24/auntiesrecipes">https://github.com/user24/auntiesrecipes</a>
@@ -51,8 +48,5 @@
                 The searching is actually performed super fast on the client-side, so your search queries never even hit my server.
             </small>
         </footer>
-	</div>
-  </div>
-</div>
-</body>
+    </body>
 </html>

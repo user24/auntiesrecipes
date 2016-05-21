@@ -2,21 +2,13 @@ body, a {
     font-family: sans-serif;
     color: #4c4c4c;
 }
-#page {
-    display: table;
-    width: 100%;
-}
-#inner {
-    display:table-cell;
-    vertical-align:middle;
-}
-#message {
+body {
     width: 800px;
     margin: auto;
-    margin-top: 50px;
 }
 section:first-child {
     text-align: center;
+    margin-top: 50px;
 }
 section {
     margin-top: 50px;
