@@ -51,3 +51,22 @@ li a {
 .growveg {
     color: #0BBC00;
 }
+
+@media (max-device-width: 900px), (max-width: 840px){
+    body {
+        width: 95%;
+    }
+    input  {
+        font-size: 28pt;
+    }
+    #search {
+        height: 80px;
+        width: 99%;
+    }
+    #results {
+        width: auto;
+    }
+    li {
+        padding-left: 0;
+    }
+}
