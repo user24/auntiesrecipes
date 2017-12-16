@@ -21,6 +21,7 @@ The download can be done through a shell script and `wget` or through a Node.js 
 ### Installation
 
 ```
+$ cd downloader
 $ npm install
 ```
 
